@@ -58,34 +58,33 @@
         console.log("ERROR in MONGO SESSION STORE", err);
     });
 
-    const sessionOptions = {
-        store,
-        secret : process.env.SECRET,
-        resave : false,
-        saveUninitialized : true,
-        cookie : {
-            expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
-            maxAge :  7 * 24 * 60 * 60 * 1000   
-        },
-    };
+  const sessionOptions = {
+    store,
+    secret : process.env.SECRET,
+    resave : false,
+    saveUninitialized : true,
+    cookie : {
+        expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
+        maxAge :  7 * 24 * 60 * 60 * 1000   
+    },
+};
 
-   
+app.use(session(sessionOptions));
+app.use(flash());
 
-    app.use(session(sessionOptions));
-    app.use(flash());
-    app.use(passport.initialize());
-    app.use(passport.session());
-    passport.use(new LoacalPassport(User.authenticate()));
-    passport.serializeUser(User.serializeUser());
-    passport.deserializeUser(User.deserializeUser());
-    
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LoacalPassport(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-    app.use((req , res , next)=>{
-        res.locals.success  = req.flash("success");
-        res.locals.error  = req.flash("error");
-        res.locals.currUser = req.user  ;
-         next();
-    });
+// ✅ FIXED: currUser must come AFTER passport.session()
+app.use((req, res, next) => {
+    res.locals.currUser = req.user || null;
+    res.locals.success = req.flash("success");
+    res.locals.error = req.flash("error");
+    next();
+});
 
     // //fake user
 
