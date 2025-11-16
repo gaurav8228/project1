@@ -1,0 +1,109 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container{
+    flex: 1;
+}
+ .navbar{
+    height: 5rem;
+    background-color: white;
+ }
+ .fa-compass{
+    color: #fe424d;
+    font-size: 2rem;
+ }
+.nav-link{
+    color: #222222 !important;
+}
+
+/* footer */
+.f-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover {
+    text-decoration: underline;
+}
+.f-info-social i{
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
+
+.f-info {
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap: wrap;   /* allows items to wrap */
+    text-align: center;
+    height: auto;      /* let height grow naturally */
+    padding: 1rem;
+    gap: 1rem;         /* spacing between items */
+}
+
+/* default: every child takes full width */
+.f-info > div {
+    flex: 1 1 100%;
+}
+
+/* make socials + links share a row */
+.f-info-social,
+.f-info-links {
+    flex: 1 1 50%;   /* ✅ 50% each on the same row */
+    
+}
+
+.f-info-brand {
+    flex: 1 1 100%;  /* ✅ stays full width below */
+}
+/* Cards */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+.card-body{
+    padding: 0 !important;
+}
+.card-text{
+    font-weight: 400 !important;
+}
+.listing-link{
+    text-decoration: none;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+/* new listing button */
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+/* update btn */
+.update-btn{
+    
+    background-color: #fe424d !important;
+    border: none !important;
+
+}
+
+/* map */
+#map {
+  height: 400px;
+  width: 100vh;
+}
+.custom-marker {
+  display: block;
+}
+    
