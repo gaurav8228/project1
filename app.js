@@ -80,11 +80,12 @@ passport.deserializeUser(User.deserializeUser());
 
 // ✅ FIXED: currUser must come AFTER passport.session()
 app.use((req, res, next) => {
-    res.locals.currUser = req.user;
-    res.locals.success = req.flash("success");
-    res.locals.error = req.flash("error");
+    res.locals.currUser = req.user || null;
+    res.locals.success = req.flash("success") || [];
+    res.locals.error = req.flash("error") || [];
     next();
 });
+
 
     // //fake user
 
